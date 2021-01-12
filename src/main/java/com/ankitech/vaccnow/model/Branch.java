@@ -21,6 +21,9 @@ public class Branch {
     @ApiModelProperty(position = 1, notes = "unique feedback id generated and saved in database", accessMode = ApiModelProperty.AccessMode.READ_ONLY, example = "5f1af61e12eb2d004a307116")
     private String id;
     @NotBlank
-    @ApiModelProperty(position = 2, notes = "Branch name", example = "pune", required = true)
-    private String branchName;
+    @ApiModelProperty(position = 2, notes = "Branch name", example = "pimple saudagar", required = true)
+    private String name;
+    @NotBlank
+    @ApiModelProperty(position = 3, notes = "Location of the branch", example = "pune", required = true)
+    private Location location;
 }
