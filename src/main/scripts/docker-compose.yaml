@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  mongo:
+    image: mongo:4.0-xenial
+    restart: always
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_DATABASE: "vaccnow"
+      #To Setup username and password refer https://medium.com/rahasak/enable-mongodb-authentication-with-docker-1b9f7d405a94
+    volumes:
+      - ./mongo-volume:/data/db
+
+  vaccnow-api:
+    image: vaccnow/vaccnowapi
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - mongo
+    environment:
+      SPRING_DATA_MONGODB_HOST: mongo
+      SPRING_DATA_MONGODB_PORT: 27017
+      SPRING_DATA_MONGODB_DATABASE: "vaccnow"

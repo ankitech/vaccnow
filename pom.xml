@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.6.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.ankitech</groupId>
+	<artifactId>vaccnow</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>vaccnow</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>11</java.version>
+		<springfox-version>2.9.2</springfox-version>
+		<!--set this to your docker acct name-->
+		<docker.image.prefix>vaccnow</docker.image.prefix>
+		<!--Set to name of project-->
+		<docker.image.name>vaccnowapi</docker.image.name>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- util dependencies -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!--SpringFox dependencies -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-bean-validators</artifactId>
+			<version>${springfox-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.flapdoodle.embed</groupId>
+			<artifactId>de.flapdoodle.embed.mongo</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.33.0</version>
+				<configuration>
+					<dockerHost>http://127.0.0.1:2375</dockerHost>
+					<!--<dockerHost>unix:///var/run/docker.sock</dockerHost>-->
+					<verbose>true</verbose>
+					<images>
+						<image>
+							<name>${docker.image.prefix}/${docker.image.name}</name>
+							<build>
+								<dockerFileDir>${project.basedir}/target/dockerfile/</dockerFileDir>
+
+								<!--copies artficact to docker build dir in target-->
+								<assembly>
+									<descriptorRef>artifact</descriptorRef>
+								</assembly>
+								<tags>
+									<tag>latest</tag>
+									<tag>${project.version}</tag>
+								</tags>
+							</build>
+							<run>
+								<ports>
+									<port>8080:8080</port>
+								</ports>
+								<links>
+									<link>mongo:mongo</link>
+								</links>
+								<dependsOn>
+									<container>mongo</container>
+								</dependsOn>
+							</run>
+						</image>
+						<image>
+							<name>mongo:4.0-xenial</name>
+							<run>
+								<ports>
+									<port>27017</port>
+								</ports>
+								<wait>
+									<time>10000</time>
+								</wait>
+							</run>
+						</image>
+					</images>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.gmavenplus</groupId>
+				<artifactId>gmavenplus-plugin</artifactId>
+				<version>1.9.0</version>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<scripts>
+						<script>file:///${project.basedir}/src/main/scripts/BuildDockerfile.groovy</script>
+					</scripts>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.groovy</groupId>
+						<artifactId>groovy-all</artifactId>
+						<!-- any version of Groovy \>= 1.5.0 should work here -->
+						<version>1.7.6</version>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
