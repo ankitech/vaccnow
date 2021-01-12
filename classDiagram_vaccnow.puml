@@ -1,0 +1,59 @@
+@startuml
+
+class Vaccine {
+String id
+String name
+String cost
+getter()
+setter()
+}
+
+class Branch {
+String id
+String name
+Location location
+getter()
+setter()
+}
+
+class VaccineAllocation {
+String id
+int count
+String branchId
+String vaccineId
+getter()
+setter()
+addVaccine()
+consumeVaccine()
+}
+
+class TimeSlots{
+String id
+Date from
+Date to
+getter()
+setter()
+}
+
+class Schedule{
+String id
+String name
+String allocationId
+boolean attended
+Payment paymentType
+getter()
+setter()
+}
+
+enum Location {
+Delhi
+Mumbai
+Pune
+}
+
+enum Payment {
+Cash
+Credit
+Fawry
+}
+@enduml
