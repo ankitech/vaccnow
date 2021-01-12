@@ -18,7 +18,7 @@ import javax.validation.constraints.NotBlank;
 public class Branch {
 
     @Id
-    @ApiModelProperty(position = 1, notes = "unique feedback id generated and saved in database", accessMode = ApiModelProperty.AccessMode.READ_ONLY, example = "5f1af61e12eb2d004a307116")
+    @ApiModelProperty(position = 1, notes = "unique branch id generated and saved in database", accessMode = ApiModelProperty.AccessMode.READ_ONLY, example = "5f1af61e12eb2d004a307116")
     private String id;
     @NotBlank
     @ApiModelProperty(position = 2, notes = "Branch name", example = "pimple saudagar", required = true)
