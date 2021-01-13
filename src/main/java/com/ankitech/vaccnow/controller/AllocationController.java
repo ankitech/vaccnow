@@ -13,9 +13,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Map;
 
@@ -44,5 +47,20 @@ public class AllocationController {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         return new ResponseEntity<>(allocationService.getAllocationPerBranch(), headers, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Get all allocations for a branch", response = Allocation.class, responseContainer = "List", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/{branchId}")
+    public ResponseEntity<List<Allocation>> getAllocationByBranchId(@PathVariable("branchId")
+                                                                    @NotBlank
+                                                                    @Size(min = 10, max = 64, message = "branchId id should be between 10 and 64 characters")
+                                                                            String branchId) {
+
+        LOGGER.info("fetching all branches");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        return new ResponseEntity<>(allocationService.getAllocationByBranchId(branchId), headers, HttpStatus.OK);
     }
 }

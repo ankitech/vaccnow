@@ -31,4 +31,11 @@ public class AllocationServiceImpl implements AllocationService {
 
         return result;
     }
+
+    @Override
+    public List<Allocation> getAllocationByBranchId(String branchId) {
+
+        return allocationRepository.findAllByBranchId(branchId);
+
+    }
 }

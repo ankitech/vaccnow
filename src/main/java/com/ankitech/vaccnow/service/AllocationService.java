@@ -8,4 +8,6 @@ import java.util.Map;
 public interface AllocationService {
 
     Map<String, List<Allocation>> getAllocationPerBranch();
+
+    List<Allocation> getAllocationByBranchId(String branchId);
 }

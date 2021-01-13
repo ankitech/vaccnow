@@ -3,7 +3,7 @@
 class Vaccine {
 String id
 String name
-String cost
+int cost
 getter()
 setter()
 }
@@ -16,18 +16,16 @@ getter()
 setter()
 }
 
-class VaccineAllocation {
+class Allocation {
 String id
 int count
 String branchId
 String vaccineId
 getter()
 setter()
-addVaccine()
-consumeVaccine()
 }
 
-class TimeSlots{
+class Slots{
 String id
 Date from
 Date to
@@ -37,9 +35,11 @@ setter()
 
 class Schedule{
 String id
-String name
+String email
 String allocationId
-boolean attended
+String slotId
+boolean isApplied
+Date appliedOn
 Payment paymentType
 getter()
 setter()

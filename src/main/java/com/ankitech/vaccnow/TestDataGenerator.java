@@ -3,13 +3,16 @@ package com.ankitech.vaccnow;
 import com.ankitech.vaccnow.model.Allocation;
 import com.ankitech.vaccnow.model.Branch;
 import com.ankitech.vaccnow.model.Location;
+import com.ankitech.vaccnow.model.Slot;
 import com.ankitech.vaccnow.model.Vaccine;
 import com.ankitech.vaccnow.repository.AllocationRepository;
 import com.ankitech.vaccnow.repository.BranchRepository;
+import com.ankitech.vaccnow.repository.SlotRepository;
 import com.ankitech.vaccnow.repository.VaccineRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -18,11 +21,13 @@ public class TestDataGenerator implements CommandLineRunner {
     private final BranchRepository branchRepository;
     private final VaccineRepository vaccineRepository;
     private final AllocationRepository allocationRepository;
+    private final SlotRepository slotRepository;
 
-    public TestDataGenerator(BranchRepository branchRepository, VaccineRepository vaccineRepository, AllocationRepository allocationRepository) {
+    public TestDataGenerator(BranchRepository branchRepository, VaccineRepository vaccineRepository, AllocationRepository allocationRepository, SlotRepository slotRepository) {
         this.branchRepository = branchRepository;
         this.vaccineRepository = vaccineRepository;
         this.allocationRepository = allocationRepository;
+        this.slotRepository = slotRepository;
     }
 
     @Override
@@ -52,5 +57,24 @@ public class TestDataGenerator implements CommandLineRunner {
         Allocation a5 = Allocation.builder().branchId(b2.getId()).vaccineId(v3.getId()).count(350).build();
 
         allocationRepository.saveAll(List.of(a1, a2, a3, a4, a5));
+
+        Slot s1 = Slot.builder().branchId(b1.getId()).from(LocalDateTime.now().plusHours(1).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s2 = Slot.builder().branchId(b1.getId()).from(LocalDateTime.now().plusHours(2).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s3 = Slot.builder().branchId(b1.getId()).from(LocalDateTime.now().plusHours(3).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s4 = Slot.builder().branchId(b1.getId()).from(LocalDateTime.now().plusHours(4).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+
+        Slot s5 = Slot.builder().branchId(b2.getId()).from(LocalDateTime.now().plusHours(1).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s6 = Slot.builder().branchId(b2.getId()).from(LocalDateTime.now().plusHours(2).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s7 = Slot.builder().branchId(b2.getId()).from(LocalDateTime.now().plusHours(3).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s8 = Slot.builder().branchId(b2.getId()).from(LocalDateTime.now().plusHours(4).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s9 = Slot.builder().branchId(b2.getId()).from(LocalDateTime.now().plusHours(5).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+
+        Slot s10 = Slot.builder().branchId(b3.getId()).from(LocalDateTime.now().plusHours(1).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s11 = Slot.builder().branchId(b3.getId()).from(LocalDateTime.now().plusHours(2).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s12 = Slot.builder().branchId(b3.getId()).from(LocalDateTime.now().plusHours(3).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s13 = Slot.builder().branchId(b3.getId()).from(LocalDateTime.now().plusHours(4).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s14 = Slot.builder().branchId(b3.getId()).from(LocalDateTime.now().plusHours(5).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+
+        slotRepository.saveAll(List.of(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14));
     }
 }
