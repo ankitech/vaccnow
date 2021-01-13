@@ -27,7 +27,7 @@ public class AllocationServiceImpl implements AllocationService {
         Map<String, List<Allocation>> collect = allocationRepository.findAll().stream().collect(groupingBy(Allocation::getBranchId));
         Map<String, List<Allocation>> result = new HashMap<>();
 
-        collect.forEach((s, allocations) -> result.put(branchRepository.findById(s).get().getName(), allocations));
+        collect.forEach((s, allocations) -> result.put(branchRepository.findById(s).get().getId(), allocations));
 
         return result;
     }
