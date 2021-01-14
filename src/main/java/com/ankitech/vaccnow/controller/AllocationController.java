@@ -25,7 +25,7 @@ import java.util.Map;
 @CrossOrigin
 @RestController
 @Validated
-@Api(value = "Branch Controller for managing branch")
+@Api(value = "Allocation Controller for managing allocation")
 @RequestMapping("/v1/allocation")
 public class AllocationController {
 
@@ -39,7 +39,7 @@ public class AllocationController {
 
     @ApiOperation(value = "Get allocations per branch", response = Map.class, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping
-    public ResponseEntity<Map<String, List<Allocation>>> getAllAllocation() {
+    public ResponseEntity<Map<Map.Entry<String, String>, List<Allocation>>> getAllAllocation() {
 
         LOGGER.info("fetching all branches");
 

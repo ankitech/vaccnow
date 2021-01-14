@@ -21,7 +21,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @Validated
-@Api(value = "Branch Controller for managing branch")
+@Api(value = "Vaccine Controller for managing vaccine")
 @RequestMapping("/v1/vaccine")
 public class VaccineController {
 

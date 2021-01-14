@@ -1,6 +1,7 @@
 package com.ankitech.vaccnow.service;
 
 import com.ankitech.vaccnow.model.Allocation;
+import com.ankitech.vaccnow.model.MyEntry;
 import com.ankitech.vaccnow.repository.AllocationRepository;
 import com.ankitech.vaccnow.repository.BranchRepository;
 import org.springframework.stereotype.Service;
@@ -23,11 +24,11 @@ public class AllocationServiceImpl implements AllocationService {
     }
 
     @Override
-    public Map<String, List<Allocation>> getAllocationPerBranch() {
+    public Map<Map.Entry<String, String>, List<Allocation>> getAllocationPerBranch() {
         Map<String, List<Allocation>> collect = allocationRepository.findAll().stream().collect(groupingBy(Allocation::getBranchId));
-        Map<String, List<Allocation>> result = new HashMap<>();
+        Map<Map.Entry<String, String>, List<Allocation>> result = new HashMap<>();
 
-        collect.forEach((s, allocations) -> result.put(branchRepository.findById(s).get().getId(), allocations));
+        collect.forEach((s, allocations) -> result.put(new MyEntry<>("branchId", branchRepository.findById(s).get().getId()), allocations));
 
         return result;
     }

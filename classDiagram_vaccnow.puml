@@ -27,6 +27,7 @@ setter()
 
 class Slots{
 String id
+String branchId
 Date from
 Date to
 getter()
@@ -41,6 +42,7 @@ String slotId
 boolean isApplied
 Date appliedOn
 Payment paymentType
+String BranchId
 getter()
 setter()
 }

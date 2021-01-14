@@ -40,7 +40,7 @@ public class BranchController {
     @ApiOperation(value = "Get all branches", response = Branch.class, responseContainer = "List",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping
-    public ResponseEntity<List<Branch>> getAllQuestion() {
+    public ResponseEntity<List<Branch>> getAllBranch() {
 
         LOGGER.info("fetching all branches");
 

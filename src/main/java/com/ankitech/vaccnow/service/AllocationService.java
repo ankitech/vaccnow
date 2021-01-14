@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface AllocationService {
 
-    Map<String, List<Allocation>> getAllocationPerBranch();
+    Map<Map.Entry<String, String>, List<Allocation>> getAllocationPerBranch();
 
     List<Allocation> getAllocationByBranchId(String branchId);
 }

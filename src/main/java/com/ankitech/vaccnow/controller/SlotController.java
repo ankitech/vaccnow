@@ -24,7 +24,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @Validated
-@Api(value = "Branch Controller for managing branch")
+@Api(value = "Slot Controller for managing slot")
 @RequestMapping("/v1/slot")
 public class SlotController {
 
