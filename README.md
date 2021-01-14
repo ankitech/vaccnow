@@ -3,18 +3,24 @@ As a cautious action after Covid-19, VaccNow is an healthcare organization manag
 
 **Table of Contents**
 1. [Class Diagram](#class-diagram)
-2. [data model diagram](#data-model)
-3. [Prerequisites to Run the application](#prerequisites-to-run-the-application)
-4. [Running the application](#running-the-application)
-5. [Prerequisites for development system](#prerequisites-for-development-system)
-6. [Running Application Locally](#running-application-locally)
-7. [Running application in development and debug mode](#running-application-in-development-and-debug-mode)
+2. [Data model diagram](#data-model)
+3. [Api apecs](#api-specs)
+4. [Prerequisites to Run the application](#prerequisites-to-run-the-application)
+5. [Running the application](#running-the-application)
+6. [Prerequisites for development system](#prerequisites-for-development-system)
+7. [Running Application Locally](#running-application-locally)
+8. [Running application in development and debug mode](#running-application-in-development-and-debug-mode)
 
 ## Class diagram
 ![class Diagram](https://github.com/ankitech/vaccnow/blob/master/class_diagram.png) 
 
 ## Data model
 ![data model](https://github.com/ankitech/vaccnow/blob/master/datamodel.png) 
+
+## Api specs
+![swagger1](https://github.com/ankitech/vaccnow/blob/master/swagger1.png) 
+![swagger1](https://github.com/ankitech/vaccnow/blob/master/swagger2.png) 
+![swagger1](https://github.com/ankitech/vaccnow/blob/master/swagger3.png) 
 
 ## Prerequisites to Run the application
 - Docker

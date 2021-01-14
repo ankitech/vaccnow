@@ -48,7 +48,9 @@ public class ScheduleServiceImpl implements ScheduleService {
         schedule.setApplied(true);
         schedule.setAppliedOn(LocalDateTime.now());
 
-        return scheduleRepository.save(schedule);
+        Schedule saved = scheduleRepository.save(schedule);
+        //TODO: generate Vaccine Certificate
+        return saved;
     }
 
     @Override
@@ -64,5 +66,15 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public List<Schedule> getAppliedByBranch(String branchId) {
         return scheduleRepository.findByAppliedIsAndBranchId(true, branchId);
+    }
+
+    @Override
+    public List<Schedule> getAppliedForDay() {
+        return scheduleRepository.findByAppliedOnGreaterThanEqualAndAppliedOnLessThanEqual(LocalDateTime.now().minusDays(1), LocalDateTime.now());
+    }
+
+    @Override
+    public List<Schedule> getAppliedByPeriod(LocalDateTime from, LocalDateTime to) {
+        return scheduleRepository.findByAppliedOnGreaterThanEqualAndAppliedOnLessThanEqual(from, to);
     }
 }

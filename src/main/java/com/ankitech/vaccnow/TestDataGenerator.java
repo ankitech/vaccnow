@@ -67,20 +67,20 @@ public class TestDataGenerator implements CommandLineRunner {
 
         Slot s1 = Slot.builder().branchId(b1.getId()).from(LocalDateTime.now().plusHours(1).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
         Slot s2 = Slot.builder().branchId(b1.getId()).from(LocalDateTime.now().plusHours(2).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
-        Slot s3 = Slot.builder().branchId(b1.getId()).from(LocalDateTime.now().plusHours(3).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
-        Slot s4 = Slot.builder().branchId(b1.getId()).from(LocalDateTime.now().plusHours(4).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s3 = Slot.builder().branchId(b1.getId()).from(LocalDateTime.now().minusHours(3).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s4 = Slot.builder().branchId(b1.getId()).from(LocalDateTime.now().minusHours(10).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
 
         Slot s5 = Slot.builder().branchId(b2.getId()).from(LocalDateTime.now().plusHours(1).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
         Slot s6 = Slot.builder().branchId(b2.getId()).from(LocalDateTime.now().plusHours(2).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
-        Slot s7 = Slot.builder().branchId(b2.getId()).from(LocalDateTime.now().plusHours(3).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
-        Slot s8 = Slot.builder().branchId(b2.getId()).from(LocalDateTime.now().plusHours(4).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
-        Slot s9 = Slot.builder().branchId(b2.getId()).from(LocalDateTime.now().plusHours(5).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s7 = Slot.builder().branchId(b2.getId()).from(LocalDateTime.now().minusHours(10).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s8 = Slot.builder().branchId(b2.getId()).from(LocalDateTime.now().minusHours(15).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s9 = Slot.builder().branchId(b2.getId()).from(LocalDateTime.now().minusHours(20).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
 
         Slot s10 = Slot.builder().branchId(b3.getId()).from(LocalDateTime.now().plusHours(1).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
         Slot s11 = Slot.builder().branchId(b3.getId()).from(LocalDateTime.now().plusHours(2).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
-        Slot s12 = Slot.builder().branchId(b3.getId()).from(LocalDateTime.now().plusHours(3).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
-        Slot s13 = Slot.builder().branchId(b3.getId()).from(LocalDateTime.now().plusHours(4).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
-        Slot s14 = Slot.builder().branchId(b3.getId()).from(LocalDateTime.now().plusHours(5).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s12 = Slot.builder().branchId(b3.getId()).from(LocalDateTime.now().minusHours(11).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s13 = Slot.builder().branchId(b3.getId()).from(LocalDateTime.now().minusHours(12).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+        Slot s14 = Slot.builder().branchId(b3.getId()).from(LocalDateTime.now().minusHours(13).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
 
         slotRepository.saveAll(List.of(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14));
 
@@ -97,32 +97,59 @@ public class TestDataGenerator implements CommandLineRunner {
                 .email("someone@gmail.com")
                 .allocationId(a4.getId())
                 .slotId(s2.getId())
-                .applied(true)
-                .appliedOn(LocalDateTime.now().plusHours(2).plusMinutes(23))
+                .applied(false)
                 .paymentType(Payment.CASH)
                 .branchId(b1.getId())
                 .build();
 
         Schedule sh3 = Schedule.builder()
+                .email("other@gmail.com")
+                .allocationId(a4.getId())
+                .slotId(s3.getId())
+                .applied(true)
+                .appliedOn(LocalDateTime.now().minusHours(3).plusMinutes(23))
+                .paymentType(Payment.CASH)
+                .branchId(b1.getId())
+                .build();
+
+        Schedule sh4 = Schedule.builder()
                 .email("smita@gmail.com")
                 .allocationId(a2.getId())
                 .slotId(s6.getId())
-                .applied(true)
-                .appliedOn(LocalDateTime.now().plusHours(2).plusMinutes(18))
+                .applied(false)
                 .paymentType(Payment.CREDIT)
                 .branchId(b2.getId())
                 .build();
 
-        Schedule sh4 = Schedule.builder()
+        Schedule sh5 = Schedule.builder()
+                .email("murmu@gmail.com")
+                .allocationId(a2.getId())
+                .slotId(s7.getId())
+                .applied(true)
+                .appliedOn(LocalDateTime.now().minusHours(10).plusMinutes(18))
+                .paymentType(Payment.CREDIT)
+                .branchId(b2.getId())
+                .build();
+
+        Schedule sh6 = Schedule.builder()
                 .email("mohan@gmail.com")
                 .allocationId(a3.getId())
                 .slotId(s11.getId())
-                .applied(true)
-                .appliedOn(LocalDateTime.now().plusHours(2).plusMinutes(20))
+                .applied(false)
                 .paymentType(Payment.CASH)
                 .branchId(b3.getId())
                 .build();
 
-        scheduleRepository.saveAll(List.of(sh1, sh2, sh3, sh4));
+        Schedule sh7 = Schedule.builder()
+                .email("gourav@gmail.com")
+                .allocationId(a3.getId())
+                .slotId(s13.getId())
+                .applied(true)
+                .appliedOn(LocalDateTime.now().minusHours(12).plusMinutes(20))
+                .paymentType(Payment.CASH)
+                .branchId(b3.getId())
+                .build();
+
+        scheduleRepository.saveAll(List.of(sh1, sh2, sh3, sh4, sh5, sh6, sh7));
     }
 }

@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,11 +20,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -110,6 +113,35 @@ public class ScheduleController {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         return new ResponseEntity<>(scheduleService.getAppliedByBranch(branchId), headers, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Get all applied vaccine by Branch", response = Schedule.class, responseContainer = "List",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/applied/day")
+    public ResponseEntity<List<Schedule>> getAllAppliedPerDay() {
+
+        LOGGER.info("fetching all applied Schedule for a day");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        return new ResponseEntity<>(scheduleService.getAppliedForDay(), headers, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Get all applied vaccine by Branch", response = Schedule.class, responseContainer = "List",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/applied/period")
+    public ResponseEntity<List<Schedule>> getAllAppliedByPeriod(@RequestParam("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+                                                                        LocalDateTime from,
+                                                                @RequestParam("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+                                                                        LocalDateTime to) {
+
+        LOGGER.info("fetching all applied Schedule by period");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        return new ResponseEntity<>(scheduleService.getAppliedByPeriod(from, to), headers, HttpStatus.OK);
     }
 
 }
