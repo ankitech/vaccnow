@@ -73,7 +73,7 @@ public class ScheduleController {
 
     @ApiOperation(value = "Apply vaacine for the schedule", response = Schedule.class,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @PutMapping("/{scheduleId}")
+    @PutMapping("/apply/{scheduleId}")
     public ResponseEntity<Schedule> updateQuestion(@PathVariable("scheduleId")
                                                    @NotBlank
                                                    @Size(min = 10, max = 64, message = "schedule id should be between 10 and 64 characters")
