@@ -18,9 +18,9 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class VaccineServiceImplTest {
 
-    Vaccine v1 = Vaccine.builder().name("covax").cost(1000).build();
-    Vaccine v2 = Vaccine.builder().name("pfizer").cost(2000).build();
-    Vaccine v3 = Vaccine.builder().name("bharattec").cost(350).build();
+    private final Vaccine v1 = Vaccine.builder().name("covax").cost(1000).build();
+    private final Vaccine v2 = Vaccine.builder().name("pfizer").cost(2000).build();
+    private final Vaccine v3 = Vaccine.builder().name("bharattec").cost(350).build();
     @Mock
     private VaccineRepository vaccineRepository;
     @InjectMocks

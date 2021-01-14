@@ -24,8 +24,8 @@ class BranchServiceImplTest {
 
     private final String BRANCH1 = "BRANCHIDISTHISFOR1";
     private final String BRANCH2 = "BRANCHIDISTHISFOR2";
-    Branch b1 = Branch.builder().id(BRANCH1).name("pimple saudagar").location(Location.PUNE).build();
-    Branch b2 = Branch.builder().id(BRANCH2).name("dadar").location(Location.MUMBAI).build();
+    private final Branch b1 = Branch.builder().id(BRANCH1).name("pimple saudagar").location(Location.PUNE).build();
+    private final Branch b2 = Branch.builder().id(BRANCH2).name("dadar").location(Location.MUMBAI).build();
     @Mock
     private BranchRepository branchRepository;
     @InjectMocks

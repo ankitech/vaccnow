@@ -23,9 +23,8 @@ class SlotServiceImplTest {
 
     private final String BRANCH1 = "BRANCHIDISTHISFOR1";
     private final String BRANCH2 = "BRANCHIDISTHISFOR2";
-    Slot s1 = Slot.builder().branchId(BRANCH1).from(LocalDateTime.now().plusHours(1).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
-    Slot s2 = Slot.builder().branchId(BRANCH1).from(LocalDateTime.now().plusHours(2).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
-    Slot s5 = Slot.builder().branchId(BRANCH2).from(LocalDateTime.now().plusHours(1).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+    private final Slot s1 = Slot.builder().branchId(BRANCH1).from(LocalDateTime.now().plusHours(1).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+    private final Slot s2 = Slot.builder().branchId(BRANCH1).from(LocalDateTime.now().plusHours(2).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
     @Mock
     private SlotRepository slotRepository;
     @InjectMocks

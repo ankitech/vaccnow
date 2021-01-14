@@ -23,10 +23,10 @@ class AllocationServiceImplTest {
     private final String BRANCH2 = "BRANCHIDISTHISFOR2";
     private final String VACCINE1 = "VACCINEIDISTHISFOR1";
     private final String VACCINE2 = "VACCINEIDISTHISFOR2";
-    Allocation a1 = Allocation.builder().id("ALLOCATIONIDISTHISFOR1").branchId(BRANCH1).vaccineId(VACCINE1).count(200).build();
-    Allocation a2 = Allocation.builder().id("ALLOCATIONIDISTHISFOR2").branchId(BRANCH1).vaccineId(VACCINE2).count(500).build();
-    Allocation a3 = Allocation.builder().id("ALLOCATIONIDISTHISFOR3").branchId(BRANCH2).vaccineId(VACCINE1).count(200).build();
-    Allocation a4 = Allocation.builder().id("ALLOCATIONIDISTHISFOR4").branchId(BRANCH2).vaccineId(VACCINE2).count(500).build();
+    private final Allocation a1 = Allocation.builder().id("ALLOCATIONIDISTHISFOR1").branchId(BRANCH1).vaccineId(VACCINE1).count(200).build();
+    private final Allocation a2 = Allocation.builder().id("ALLOCATIONIDISTHISFOR2").branchId(BRANCH1).vaccineId(VACCINE2).count(500).build();
+    private final Allocation a3 = Allocation.builder().id("ALLOCATIONIDISTHISFOR3").branchId(BRANCH2).vaccineId(VACCINE1).count(200).build();
+    private final Allocation a4 = Allocation.builder().id("ALLOCATIONIDISTHISFOR4").branchId(BRANCH2).vaccineId(VACCINE2).count(500).build();
     @Mock
     private AllocationRepository allocationRepository;
     @InjectMocks
