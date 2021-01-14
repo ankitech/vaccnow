@@ -16,11 +16,9 @@ import static java.util.stream.Collectors.groupingBy;
 public class AllocationServiceImpl implements AllocationService {
 
     private final AllocationRepository allocationRepository;
-    private final BranchRepository branchRepository;
 
     public AllocationServiceImpl(AllocationRepository allocationRepository, BranchRepository branchRepository) {
         this.allocationRepository = allocationRepository;
-        this.branchRepository = branchRepository;
     }
 
     @Override
@@ -28,7 +26,7 @@ public class AllocationServiceImpl implements AllocationService {
         Map<String, List<Allocation>> collect = allocationRepository.findAll().stream().collect(groupingBy(Allocation::getBranchId));
         Map<Map.Entry<String, String>, List<Allocation>> result = new HashMap<>();
 
-        collect.forEach((s, allocations) -> result.put(new MyEntry<>("branchId", branchRepository.findById(s).get().getId()), allocations));
+        collect.forEach((branchId, allocations) -> result.put(new MyEntry<>("branchId", branchId), allocations));
 
         return result;
     }

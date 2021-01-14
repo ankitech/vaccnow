@@ -19,11 +19,9 @@ import static java.util.stream.Collectors.groupingBy;
 public class ScheduleServiceImpl implements ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
-    private final BranchRepository branchRepository;
 
     public ScheduleServiceImpl(ScheduleRepository scheduleRepository, BranchRepository branchRepository) {
         this.scheduleRepository = scheduleRepository;
-        this.branchRepository = branchRepository;
     }
 
     @Override
@@ -58,7 +56,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         Map<String, List<Schedule>> collect = scheduleRepository.findByAppliedIs(true).stream().collect(groupingBy(Schedule::getBranchId));
         Map<Map.Entry<String, String>, List<Schedule>> result = new HashMap<>();
 
-        collect.forEach((s, schedules) -> result.put(new MyEntry<>("branchId", branchRepository.findById(s).get().getId()), schedules));
+        collect.forEach((branchId, schedules) -> result.put(new MyEntry<>("branchId", branchId), schedules));
 
         return result;
     }
