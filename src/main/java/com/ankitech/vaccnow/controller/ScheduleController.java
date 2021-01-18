@@ -2,26 +2,17 @@ package com.ankitech.vaccnow.controller;
 
 import com.ankitech.vaccnow.exception.GeneralException;
 import com.ankitech.vaccnow.model.Schedule;
-import com.ankitech.vaccnow.service.ScheduleService;
+import com.ankitech.vaccnow.service.interfaces.ScheduleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -52,10 +43,7 @@ public class ScheduleController {
 
         LOGGER.info("fetching all Schedule");
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        return new ResponseEntity<>(scheduleService.findAll(), headers, HttpStatus.OK);
+        return new ResponseEntity<>(scheduleService.findAll(), HttpStatus.OK);
     }
 
     @ApiOperation(value = "save a schedule", response = Schedule.class,
@@ -65,10 +53,7 @@ public class ScheduleController {
 
         LOGGER.info("saving schedule for {}", schedule.getEmail());
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        return new ResponseEntity<>(scheduleService.save(schedule), headers, HttpStatus.OK);
+        return new ResponseEntity<>(scheduleService.save(schedule), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Apply vaacine for the schedule", response = Schedule.class,
@@ -81,10 +66,7 @@ public class ScheduleController {
 
         LOGGER.info("applying vaccine for schedule : {}", scheduleId);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        return new ResponseEntity<>(scheduleService.applyVaccine(scheduleId), headers, HttpStatus.OK);
+        return new ResponseEntity<>(scheduleService.applyVaccine(scheduleId), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Get all applied vaccine", response = Map.class, responseContainer = "List",
@@ -94,10 +76,7 @@ public class ScheduleController {
 
         LOGGER.info("fetching all applied Schedule by branch");
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        return new ResponseEntity<>(scheduleService.getAppliedPerBranch(), headers, HttpStatus.OK);
+        return new ResponseEntity<>(scheduleService.getAppliedPerBranch(), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Get all applied vaccine by Branch", response = Schedule.class, responseContainer = "List",
@@ -109,10 +88,7 @@ public class ScheduleController {
 
         LOGGER.info("fetching all applied Schedule by branch");
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        return new ResponseEntity<>(scheduleService.getAppliedByBranch(branchId), headers, HttpStatus.OK);
+        return new ResponseEntity<>(scheduleService.getAppliedByBranch(branchId), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Get all applied vaccine by Branch", response = Schedule.class, responseContainer = "List",
@@ -122,10 +98,7 @@ public class ScheduleController {
 
         LOGGER.info("fetching all applied Schedule for a day");
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        return new ResponseEntity<>(scheduleService.getAppliedForDay(), headers, HttpStatus.OK);
+        return new ResponseEntity<>(scheduleService.getAppliedForDay(), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Get all applied vaccine by Branch", response = Schedule.class, responseContainer = "List",
@@ -138,10 +111,7 @@ public class ScheduleController {
 
         LOGGER.info("fetching all applied Schedule by period");
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        return new ResponseEntity<>(scheduleService.getAppliedByPeriod(from, to), headers, HttpStatus.OK);
+        return new ResponseEntity<>(scheduleService.getAppliedByPeriod(from, to), HttpStatus.OK);
     }
 
 }

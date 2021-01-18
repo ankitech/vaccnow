@@ -1,4 +1,4 @@
-package com.ankitech.vaccnow.service;
+package com.ankitech.vaccnow.service.interfaces;
 
 import com.ankitech.vaccnow.model.Slot;
 

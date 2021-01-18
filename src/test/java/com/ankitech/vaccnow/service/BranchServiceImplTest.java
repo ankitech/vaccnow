@@ -4,6 +4,7 @@ import com.ankitech.vaccnow.exception.GeneralException;
 import com.ankitech.vaccnow.model.Branch;
 import com.ankitech.vaccnow.model.Location;
 import com.ankitech.vaccnow.repository.BranchRepository;
+import com.ankitech.vaccnow.service.implementations.BranchServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,9 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class BranchServiceImplTest {

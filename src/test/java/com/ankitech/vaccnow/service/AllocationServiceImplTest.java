@@ -2,6 +2,7 @@ package com.ankitech.vaccnow.service;
 
 import com.ankitech.vaccnow.model.Allocation;
 import com.ankitech.vaccnow.repository.AllocationRepository;
+import com.ankitech.vaccnow.service.implementations.AllocationServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,9 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AllocationServiceImplTest {

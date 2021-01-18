@@ -1,9 +1,10 @@
-package com.ankitech.vaccnow.service;
+package com.ankitech.vaccnow.service.implementations;
 
 import com.ankitech.vaccnow.model.Allocation;
 import com.ankitech.vaccnow.model.MyEntry;
 import com.ankitech.vaccnow.repository.AllocationRepository;
 import com.ankitech.vaccnow.repository.BranchRepository;
+import com.ankitech.vaccnow.service.interfaces.AllocationService;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

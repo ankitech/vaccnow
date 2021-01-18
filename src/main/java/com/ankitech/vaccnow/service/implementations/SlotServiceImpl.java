@@ -1,7 +1,8 @@
-package com.ankitech.vaccnow.service;
+package com.ankitech.vaccnow.service.implementations;
 
 import com.ankitech.vaccnow.model.Slot;
 import com.ankitech.vaccnow.repository.SlotRepository;
+import com.ankitech.vaccnow.service.interfaces.SlotService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

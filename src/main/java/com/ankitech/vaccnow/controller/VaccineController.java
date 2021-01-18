@@ -1,12 +1,11 @@
 package com.ankitech.vaccnow.controller;
 
 import com.ankitech.vaccnow.model.Vaccine;
-import com.ankitech.vaccnow.service.VaccineService;
+import com.ankitech.vaccnow.service.interfaces.VaccineService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -40,9 +39,6 @@ public class VaccineController {
 
         LOGGER.info("fetching all branches");
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        return new ResponseEntity<>(vaccineService.findAllVaccines(), headers, HttpStatus.OK);
+        return new ResponseEntity<>(vaccineService.findAllVaccines(), HttpStatus.OK);
     }
 }

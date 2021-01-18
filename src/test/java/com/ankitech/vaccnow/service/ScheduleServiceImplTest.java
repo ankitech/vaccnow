@@ -4,6 +4,7 @@ import com.ankitech.vaccnow.exception.GeneralException;
 import com.ankitech.vaccnow.model.Payment;
 import com.ankitech.vaccnow.model.Schedule;
 import com.ankitech.vaccnow.repository.ScheduleRepository;
+import com.ankitech.vaccnow.service.implementations.ScheduleServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,9 +20,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ScheduleServiceImplTest {

@@ -1,8 +1,9 @@
-package com.ankitech.vaccnow.service;
+package com.ankitech.vaccnow.service.implementations;
 
 import com.ankitech.vaccnow.exception.GeneralException;
 import com.ankitech.vaccnow.model.Branch;
 import com.ankitech.vaccnow.repository.BranchRepository;
+import com.ankitech.vaccnow.service.interfaces.BranchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 

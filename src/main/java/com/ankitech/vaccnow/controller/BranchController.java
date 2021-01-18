@@ -2,21 +2,16 @@ package com.ankitech.vaccnow.controller;
 
 import com.ankitech.vaccnow.exception.GeneralException;
 import com.ankitech.vaccnow.model.Branch;
-import com.ankitech.vaccnow.service.BranchService;
+import com.ankitech.vaccnow.service.interfaces.BranchService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -44,10 +39,7 @@ public class BranchController {
 
         LOGGER.info("fetching all branches");
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        return new ResponseEntity<>(branchService.findAllBranches(), headers, HttpStatus.OK);
+        return new ResponseEntity<>(branchService.findAllBranches(), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Get branch by id", response = Branch.class,
@@ -60,10 +52,7 @@ public class BranchController {
 
         LOGGER.info("fetching branch with id {}", branchId);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        return new ResponseEntity<>(branchService.findBranchesById(branchId), headers, HttpStatus.OK);
+        return new ResponseEntity<>(branchService.findBranchesById(branchId), HttpStatus.OK);
     }
 
 }
