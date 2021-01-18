@@ -25,9 +25,8 @@ public class AllocationServiceImpl implements AllocationService {
 
     @Override
     public Map<Map.Entry<String, String>, List<Allocation>> getAllocationPerBranch() {
-        Map<String, List<Allocation>> collect = StreamSupport.stream(allocationRepository.findAll().spliterator(), false).collect(groupingBy(Allocation::getBranchId));
+        Map<String, List<Allocation>> collect = StreamSupport.stream(allocationRepository.findAll().spliterator(), false).collect(groupingBy(allocation -> allocation.getBranch().getId()));
         Map<Map.Entry<String, String>, List<Allocation>> result = new HashMap<>();
-
         collect.forEach((branchId, allocations) -> result.put(new MyEntry<>("branchId", branchId), allocations));
 
         return result;

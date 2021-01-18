@@ -1,5 +1,6 @@
 package com.ankitech.vaccnow.service;
 
+import com.ankitech.vaccnow.model.Branch;
 import com.ankitech.vaccnow.model.Slot;
 import com.ankitech.vaccnow.repository.SlotRepository;
 import com.ankitech.vaccnow.service.implementations.SlotServiceImpl;
@@ -22,8 +23,8 @@ class SlotServiceImplTest {
 
     private final String BRANCH1 = "BRANCHIDISTHISFOR1";
     private final String BRANCH2 = "BRANCHIDISTHISFOR2";
-    private final Slot s1 = Slot.builder().branchId(BRANCH1).start(LocalDateTime.now().plusHours(1).plusMinutes(15)).end(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
-    private final Slot s2 = Slot.builder().branchId(BRANCH1).start(LocalDateTime.now().plusHours(2).plusMinutes(15)).end(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+    private final Slot s1 = Slot.builder().branch(Branch.builder().id(BRANCH1).build()).start(LocalDateTime.now().plusHours(1).plusMinutes(15)).end(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+    private final Slot s2 = Slot.builder().branch(Branch.builder().id(BRANCH2).build()).start(LocalDateTime.now().plusHours(2).plusMinutes(15)).end(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
     @Mock
     private SlotRepository slotRepository;
     @InjectMocks

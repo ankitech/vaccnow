@@ -5,9 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
@@ -19,6 +17,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
+@Table(name = "schedule")
 public class Schedule {
 
     @Id
@@ -30,20 +29,23 @@ public class Schedule {
     @Email
     @ApiModelProperty(position = 2, notes = "email id", example = "ankitech@gmail.com", required = true)
     private String email;
-    @NotBlank
-    @ApiModelProperty(position = 3, notes = "allocation id of the schedule", example = "5f1af61e12eb2d004a307116")
-    private String allocationId;
-    @NotBlank
-    @ApiModelProperty(position = 4, notes = "slot id of the schedule", example = "5f1af61e12eb2d004a307116")
-    private String slotId;
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "allocation_id", referencedColumnName = "id")
+    @ApiModelProperty(position = 3, notes = "Allocation id of the schedule", example = "5f1af61e12eb2d004a307116")
+    private Allocation allocation;
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "slot_id", referencedColumnName = "id")
+    @ApiModelProperty(position = 3, notes = "Allocation id of the schedule", example = "5f1af61e12eb2d004a307116")
+    private Slot slot;
     @ApiModelProperty(position = 5, notes = "Is the vaccine applied or not", example = "true")
     private boolean applied;
     @ApiModelProperty(position = 6, notes = "Time when vaccine was applied")
     private LocalDateTime appliedOn;
     @ApiModelProperty(position = 7, notes = "branch id of the slot")
-    private Payment paymentType;
-    @NotBlank
-    @ApiModelProperty(position = 8, notes = "branch id of the schedule", example = "5f1af61e12eb2d004a307116")
-    private String branchId;
+    private String paymentType;
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "branch_id", referencedColumnName = "id")
+    @ApiModelProperty(position = 8, notes = "branch id of the allocation", example = "5f1af61e12eb2d004a307116")
+    private Branch branch;
 
 }

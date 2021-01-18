@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -17,6 +18,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @Builder
+@Table(name = "vaccine")
 public class Vaccine {
 
     @Id

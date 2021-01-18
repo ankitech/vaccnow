@@ -1,0 +1,41 @@
+//Branch data
+insert into branch (id, location, name) values ('0cf39384-f997-4d00-8bf6-f5ced1d603ea','pune','pimple saudagar')
+insert into branch (id, location, name) values ('015c259f-8249-4f0f-86f8-a85d08a43d67','mumbai','dadar')
+insert into branch (id, location, name) values ('1a05f1c3-3f0b-41b5-b98a-fbe57d0d1d32','delhi','nehru place')
+
+//Vaccine data
+insert into vaccine (id, cost, name) values ('845e26c0-df3d-48f2-b1c8-29d0931dbb11',1000,'covax')
+insert into vaccine (id, cost, name) values ('be9a06f4-e0b9-44db-ace9-3ac1665f91b9',2000,'pfizer')
+insert into vaccine (id, cost, name) values ('916516e0-2bd1-412f-ad55-025f1bcca458',350,'bharattec')
+
+//Allocation data
+insert into allocation (id, count, branch_id, vaccine_id) values ('960a67dc-43df-464f-af5c-4e963723e45a',200,'3e4d5739-41d2-4b8c-ae89-20f66eb122ec','845e26c0-df3d-48f2-b1c8-29d0931dbb11')
+insert into allocation (id, count, branch_id, vaccine_id) values ('d55d05a3-7939-4026-9427-c46fe8933078',500,'2246ec75-a581-4d8a-b7a5-0a999098e8fe','be9a06f4-e0b9-44db-ace9-3ac1665f91b9')
+insert into allocation (id, count, branch_id, vaccine_id) values ('d8786c9c-96b1-4058-88d2-52a1d84d6960',700,'6b5b7b59-fd0a-4e2f-9345-d3b974b5bbc5','916516e0-2bd1-412f-ad55-025f1bcca458')
+insert into allocation (id, count, branch_id, vaccine_id) values ('7c07b2ea-9c07-420d-9b7b-f353a6a66820',400,'3e4d5739-41d2-4b8c-ae89-20f66eb122ec','be9a06f4-e0b9-44db-ace9-3ac1665f91b9')
+insert into allocation (id, count, branch_id, vaccine_id) values ('90c2e75a-bf33-49cd-bfea-b29c461326f4',350,'2246ec75-a581-4d8a-b7a5-0a999098e8fe','916516e0-2bd1-412f-ad55-025f1bcca458')
+
+//Slot data
+insert into slot (id, end, start, branch_id) values ('c2e5bae6-e280-4e47-a26d-d89565309d71','2021-01-18 16:36:45.946328','2021-01-18 16:21:45.946328','3e4d5739-41d2-4b8c-ae89-20f66eb122ec')
+insert into slot (id, end, start, branch_id) values ('91143719-7e8a-4ec4-92db-5d56f8d51c7d','2021-01-18 16:36:45.946328','2021-01-18 17:21:45.946328','3e4d5739-41d2-4b8c-ae89-20f66eb122ec')
+insert into slot (id, end, start, branch_id) values ('ad2e3a46-5374-4a4f-a62d-ac5f39f725bb','2021-01-18 16:36:45.946328','2021-01-18 12:21:45.946328','3e4d5739-41d2-4b8c-ae89-20f66eb122ec')
+insert into slot (id, end, start, branch_id) values ('1258c2ae-487d-4850-b1f7-0ad03b7cad8b','2021-01-18 16:36:45.946328','2021-01-18 05:21:45.946328','3e4d5739-41d2-4b8c-ae89-20f66eb122ec')
+insert into slot (id, end, start, branch_id) values ('0b166c5e-5418-4bd5-93f3-4fd644f7a970','2021-01-18 16:36:45.946328','2021-01-18 16:21:45.946328','2246ec75-a581-4d8a-b7a5-0a999098e8fe')
+insert into slot (id, end, start, branch_id) values ('54381d54-c3b0-4f77-9cdd-2d69d44704cd','2021-01-18 16:36:45.946328','2021-01-18 17:21:45.946328','2246ec75-a581-4d8a-b7a5-0a999098e8fe')
+insert into slot (id, end, start, branch_id) values ('c767d673-6017-48f5-b0d4-e606bad153b6','2021-01-18 16:36:45.946328','2021-01-18 05:21:45.946328','2246ec75-a581-4d8a-b7a5-0a999098e8fe')
+insert into slot (id, end, start, branch_id) values ('4a83d22a-b66e-40f9-a0d5-0251791554fc','2021-01-18 16:36:45.946328','2021-01-18 00:21:45.946328','2246ec75-a581-4d8a-b7a5-0a999098e8fe')
+insert into slot (id, end, start, branch_id) values ('9b7692f4-3927-4413-abf3-ed5e0dc923ed','2021-01-18 16:36:45.946328','2021-01-17 19:21:45.946328','2246ec75-a581-4d8a-b7a5-0a999098e8fe')
+insert into slot (id, end, start, branch_id) values ('eeadf987-7184-449a-9ab6-98165c779363','2021-01-18 16:36:45.946328','2021-01-18 16:21:45.946328','6b5b7b59-fd0a-4e2f-9345-d3b974b5bbc5')
+insert into slot (id, end, start, branch_id) values ('91bdf58b-9768-4e8e-9409-acad56d15c49','2021-01-18 16:36:45.946328','2021-01-18 17:21:45.946328','6b5b7b59-fd0a-4e2f-9345-d3b974b5bbc5')
+insert into slot (id, end, start, branch_id) values ('9f80e04f-09da-4eb1-b39c-7636840bc5a1','2021-01-18 16:36:45.946328','2021-01-18 04:21:45.946328','6b5b7b59-fd0a-4e2f-9345-d3b974b5bbc5')
+insert into slot (id, end, start, branch_id) values ('1abb1488-8e5a-4d70-bda1-5af4c1b7b5fd','2021-01-18 16:36:45.946328','2021-01-18 03:21:45.946328','6b5b7b59-fd0a-4e2f-9345-d3b974b5bbc5')
+insert into slot (id, end, start, branch_id) values ('70bd8850-834e-45c5-8908-407389c3c356','2021-01-18 16:36:45.946328','2021-01-18 02:21:45.946328','6b5b7b59-fd0a-4e2f-9345-d3b974b5bbc5')
+
+//Schedule data
+insert into schedule (id, applied, applied_on, email, payment_type, allocation_id, branch_id, slot_id) values ('85b4c7f8-e8f6-4f08-8ffa-76eee25235ae',FALSE,null,'ankitech@gmail.com','cash','960a67dc-43df-464f-af5c-4e963723e45a','3e4d5739-41d2-4b8c-ae89-20f66eb122ec','c2e5bae6-e280-4e47-a26d-d89565309d71')
+insert into schedule (id, applied, applied_on, email, payment_type, allocation_id, branch_id, slot_id) values ('d1e15b19-7f9e-4b07-8a02-4cc1f56955c2',FALSE,null,'someone@gmail.com','cash','7c07b2ea-9c07-420d-9b7b-f353a6a66820','3e4d5739-41d2-4b8c-ae89-20f66eb122ec','91143719-7e8a-4ec4-92db-5d56f8d51c7d')
+insert into schedule (id, applied, applied_on, email, payment_type, allocation_id, branch_id, slot_id) values ('5abfc392-018d-4533-b731-24e653dac725',TRUE,'2021-01-18 12:29:45.96233','other@gmail.com','cash','7c07b2ea-9c07-420d-9b7b-f353a6a66820','3e4d5739-41d2-4b8c-ae89-20f66eb122ec','ad2e3a46-5374-4a4f-a62d-ac5f39f725bb')
+insert into schedule (id, applied, applied_on, email, payment_type, allocation_id, branch_id, slot_id) values ('7252b433-12e1-449a-b135-12b22c76c226',FALSE,null,'smita@gmail.com',,'credit','d55d05a3-7939-4026-9427-c46fe8933078','2246ec75-a581-4d8a-b7a5-0a999098e8fe','54381d54-c3b0-4f77-9cdd-2d69d44704cd')
+insert into schedule (id, applied, applied_on, email, payment_type, allocation_id, branch_id, slot_id) values ('886a8d5e-4730-4157-a473-583748ad4e79',TRUE,'2021-01-18 05:24:45.96233','murmu@gmail.com','credit','d55d05a3-7939-4026-9427-c46fe8933078','2246ec75-a581-4d8a-b7a5-0a999098e8fe','c767d673-6017-48f5-b0d4-e606bad153b6')
+insert into schedule (id, applied, applied_on, email, payment_type, allocation_id, branch_id, slot_id) values ('546e8e82-e754-4eae-a940-b5856aa5af17',FALSE,null,'mohan@gmail.com'	,'cash','d8786c9c-96b1-4058-88d2-52a1d84d6960','6b5b7b59-fd0a-4e2f-9345-d3b974b5bbc5','91bdf58b-9768-4e8e-9409-acad56d15c49')
+insert into schedule (id, applied, applied_on, email, payment_type, allocation_id, branch_id, slot_id) values ('c210f46d-95c9-4c35-b57a-a2ac4cd42d78',TRUE,'2021-01-18 03:26:45.96233','gourav@gmail.com','cash','d8786c9c-96b1-4058-88d2-52a1d84d6960','6b5b7b59-fd0a-4e2f-9345-d3b974b5bbc5','1abb1488-8e5a-4d70-bda1-5af4c1b7b5fd')

@@ -57,7 +57,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public Map<Map.Entry<String, String>, List<Schedule>> getAppliedPerBranch() {
-        Map<String, List<Schedule>> collect = scheduleRepository.findByAppliedIs(true).stream().collect(groupingBy(Schedule::getBranchId));
+        Map<String, List<Schedule>> collect = scheduleRepository.findByAppliedIs(true).stream().collect(groupingBy(schedule -> schedule.getBranch().getId()));
         Map<Map.Entry<String, String>, List<Schedule>> result = new HashMap<>();
 
         collect.forEach((branchId, schedules) -> result.put(new MyEntry<>("branchId", branchId), schedules));

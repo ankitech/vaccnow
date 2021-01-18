@@ -1,0 +1,17 @@
+create table allocation (id varchar(255) not null, count integer not null, branch_id varchar(255), vaccine_id varchar(255), primary key (id));
+
+create table branch (id varchar(255) not null, location varchar(255), name varchar(255), primary key (id));
+
+create table schedule (id varchar(255) not null, applied boolean not null, applied_on timestamp, email varchar(255),
+ payment_type integer, allocation_id varchar(255), branch_id varchar(255), slot_id varchar(255), primary key (id));
+ 
+create table slot (id varchar(255) not null, end timestamp, start timestamp, branch_id varchar(255), primary key (id));
+
+create table vaccine (id varchar(255) not null, cost integer not null, name varchar(255), primary key (id));
+
+alter table allocation add constraint FKd6gppqtjjuds0e1qa2cc4duj8 foreign key (branch_id) references branch;
+alter table allocation add constraint FKltkxcylkip5lu8kpdwxnyl14f foreign key (vaccine_id) references vaccine;
+alter table schedule add constraint FKdvt7o3jaejqmif5jb43p9wjdk foreign key (allocation_id) references allocation;
+alter table schedule add constraint FK4ak7m8did07y741qbt2mm45c0 foreign key (branch_id) references branch;
+alter table schedule add constraint FK5fp0w97s834q3fmitfvbhhfb3 foreign key (slot_id) references slot;
+alter table slot add constraint FKb0mv65aeyk8g6yjnjxr5d66pe foreign key (branch_id) references branch;
