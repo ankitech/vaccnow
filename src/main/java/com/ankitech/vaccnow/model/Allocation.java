@@ -30,7 +30,6 @@ public class Allocation {
     @NotBlank
     @ApiModelProperty(position = 3, notes = "vaccine id of the allocation", example = "5f1af61e12eb2d004a307116")
     private String vaccineId;
-    @NotBlank
     @ApiModelProperty(position = 4, notes = "count of vaccines", example = "100")
     private int count;
 }

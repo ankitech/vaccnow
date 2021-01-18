@@ -28,10 +28,8 @@ public class Slot {
     @NotBlank
     @ApiModelProperty(position = 2, notes = "branch id of the slot", example = "5f1af61e12eb2d004a307116")
     private String branchId;
-    @NotBlank
     @ApiModelProperty(position = 3, notes = "Slot start time")
     private LocalDateTime start;
-    @NotBlank
     @ApiModelProperty(position = 4, notes = "slot end time")
     private LocalDateTime end;
 }

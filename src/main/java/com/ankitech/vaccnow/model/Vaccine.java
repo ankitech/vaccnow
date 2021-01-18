@@ -27,7 +27,6 @@ public class Vaccine {
     @NotBlank
     @ApiModelProperty(position = 2, notes = "vaccine name", example = "covax", required = true)
     private String name;
-    @NotBlank
     @ApiModelProperty(position = 3, notes = "cost of vaccine", example = "1000", required = true)
     private int cost;
 }
