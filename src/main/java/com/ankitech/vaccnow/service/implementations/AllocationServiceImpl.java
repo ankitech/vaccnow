@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.StreamSupport;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -24,7 +25,7 @@ public class AllocationServiceImpl implements AllocationService {
 
     @Override
     public Map<Map.Entry<String, String>, List<Allocation>> getAllocationPerBranch() {
-        Map<String, List<Allocation>> collect = allocationRepository.findAll().stream().collect(groupingBy(Allocation::getBranchId));
+        Map<String, List<Allocation>> collect = StreamSupport.stream(allocationRepository.findAll().spliterator(), false).collect(groupingBy(Allocation::getBranchId));
         Map<Map.Entry<String, String>, List<Allocation>> result = new HashMap<>();
 
         collect.forEach((branchId, allocations) -> result.put(new MyEntry<>("branchId", branchId), allocations));

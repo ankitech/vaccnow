@@ -2,15 +2,17 @@ package com.ankitech.vaccnow.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
-@Document(value = "branch")
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @ApiModel(description = "Branch object")
 @Getter
 @Setter
@@ -18,6 +20,8 @@ import javax.validation.constraints.NotBlank;
 public class Branch {
 
     @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @ApiModelProperty(position = 1, notes = "unique branch id generated and saved in database", accessMode = ApiModelProperty.AccessMode.READ_ONLY, example = "5f1af61e12eb2d004a307116")
     private String id;
     @NotBlank
@@ -25,5 +29,5 @@ public class Branch {
     private String name;
     @NotBlank
     @ApiModelProperty(position = 3, notes = "Location of the branch", example = "pune", required = true)
-    private Location location;
+    private String location;
 }

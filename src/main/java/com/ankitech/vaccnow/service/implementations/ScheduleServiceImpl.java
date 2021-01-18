@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<Schedule> findAll() {
-        return scheduleRepository.findAll();
+        List<Schedule> result = new ArrayList<>();
+        scheduleRepository.findAll().forEach(result::add);
+        return result;
     }
 
     @Override

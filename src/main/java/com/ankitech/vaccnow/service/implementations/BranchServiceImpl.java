@@ -7,6 +7,7 @@ import com.ankitech.vaccnow.service.interfaces.BranchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,7 +22,9 @@ public class BranchServiceImpl implements BranchService {
 
     @Override
     public List<Branch> findAllBranches() {
-        return branchRepository.findAll();
+        List<Branch> result = new ArrayList<>();
+        branchRepository.findAll().forEach(result::add);
+        return result;
     }
 
     @Override
