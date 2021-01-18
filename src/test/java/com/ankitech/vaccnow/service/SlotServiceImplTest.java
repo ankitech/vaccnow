@@ -1,5 +1,6 @@
 package com.ankitech.vaccnow.service;
 
+import com.ankitech.vaccnow.model.Branch;
 import com.ankitech.vaccnow.model.Slot;
 import com.ankitech.vaccnow.repository.SlotRepository;
 import com.ankitech.vaccnow.service.implementations.SlotServiceImpl;
@@ -22,8 +23,8 @@ class SlotServiceImplTest {
 
     private final String BRANCH1 = "BRANCHIDISTHISFOR1";
     private final String BRANCH2 = "BRANCHIDISTHISFOR2";
-    private final Slot s1 = Slot.builder().branchId(BRANCH1).from(LocalDateTime.now().plusHours(1).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
-    private final Slot s2 = Slot.builder().branchId(BRANCH1).from(LocalDateTime.now().plusHours(2).plusMinutes(15)).to(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+    private final Slot s1 = Slot.builder().branch(Branch.builder().id(BRANCH1).build()).start(LocalDateTime.now().plusHours(1).plusMinutes(15)).end(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
+    private final Slot s2 = Slot.builder().branch(Branch.builder().id(BRANCH2).build()).start(LocalDateTime.now().plusHours(2).plusMinutes(15)).end(LocalDateTime.now().plusHours(1).plusMinutes(30)).build();
     @Mock
     private SlotRepository slotRepository;
     @InjectMocks
@@ -31,10 +32,10 @@ class SlotServiceImplTest {
 
     @Test
     void getAllSlotsByBranchId() {
-        when(slotRepository.findAllByBranchIdAndFromAfter(anyString(), any(LocalDateTime.class))).thenReturn(List.of(s1, s2));
+        when(slotRepository.findAllByBranchIdAndStartAfter(anyString(), any(LocalDateTime.class))).thenReturn(List.of(s1, s2));
         List<Slot> allSlotsByBranchId = slotService.getAllSlotsByBranchId(BRANCH1);
 
-        verify(slotRepository, times(1)).findAllByBranchIdAndFromAfter(anyString(), any(LocalDateTime.class));
+        verify(slotRepository, times(1)).findAllByBranchIdAndStartAfter(anyString(), any(LocalDateTime.class));
         assertEquals(2, allSlotsByBranchId.size());
     }
 }

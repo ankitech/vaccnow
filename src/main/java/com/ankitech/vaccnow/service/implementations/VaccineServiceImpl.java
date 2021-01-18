@@ -5,6 +5,7 @@ import com.ankitech.vaccnow.repository.VaccineRepository;
 import com.ankitech.vaccnow.service.interfaces.VaccineService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,6 +19,8 @@ public class VaccineServiceImpl implements VaccineService {
 
     @Override
     public List<Vaccine> findAllVaccines() {
-        return vaccineRepository.findAll();
+        List<Vaccine> result = new ArrayList<>();
+        vaccineRepository.findAll().forEach(result::add);
+        return result;
     }
 }

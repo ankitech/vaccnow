@@ -19,6 +19,6 @@ public class SlotServiceImpl implements SlotService {
 
     @Override
     public List<Slot> getAllSlotsByBranchId(String branchId) {
-        return slotRepository.findAllByBranchIdAndFromAfter(branchId, LocalDateTime.now());
+        return slotRepository.findAllByBranchIdAndStartAfter(branchId, LocalDateTime.now());
     }
 }
