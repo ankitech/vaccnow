@@ -6,9 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,22 +32,22 @@ public class AllocationController {
 
     @ApiOperation(value = "Get allocations per branch", response = Map.class, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping
-    public ResponseEntity<Map<Map.Entry<String, String>, List<Allocation>>> getAllAllocation() {
+    public Map<Map.Entry<String, String>, List<Allocation>> getAllAllocation() {
 
         LOGGER.info("fetching all branches");
 
-        return new ResponseEntity<>(allocationService.getAllocationPerBranch(), HttpStatus.OK);
+        return allocationService.getAllocationPerBranch();
     }
 
     @ApiOperation(value = "Get all allocations for a branch", response = Allocation.class, responseContainer = "List", produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/{branchId}")
-    public ResponseEntity<List<Allocation>> getAllocationByBranchId(@PathVariable("branchId")
-                                                                    @NotBlank
-                                                                    @Size(min = 10, max = 64, message = "branchId id should be between 10 and 64 characters")
-                                                                            String branchId) {
+    public List<Allocation> getAllocationByBranchId(@PathVariable("branchId")
+                                                    @NotBlank
+                                                    @Size(min = 10, max = 64, message = "branchId id should be between 10 and 64 characters")
+                                                            String branchId) {
 
         LOGGER.info("fetching all branches");
 
-        return new ResponseEntity<>(allocationService.getAllocationByBranchId(branchId), HttpStatus.OK);
+        return allocationService.getAllocationByBranchId(branchId);
     }
 }

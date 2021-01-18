@@ -6,9 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,10 +33,10 @@ public class VaccineController {
     @ApiOperation(value = "Get all Vaccines in market", response = Vaccine.class, responseContainer = "List",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping
-    public ResponseEntity<List<Vaccine>> getAllQuestion() {
+    public List<Vaccine> getAllQuestion() {
 
         LOGGER.info("fetching all branches");
 
-        return new ResponseEntity<>(vaccineService.findAllVaccines(), HttpStatus.OK);
+        return vaccineService.findAllVaccines();
     }
 }

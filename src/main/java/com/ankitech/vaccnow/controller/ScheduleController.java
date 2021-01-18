@@ -8,9 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,79 +37,79 @@ public class ScheduleController {
     @ApiOperation(value = "Get all schedule", response = Schedule.class, responseContainer = "List",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping
-    public ResponseEntity<List<Schedule>> getAllSchedule() {
+    public List<Schedule> getAllSchedule() {
 
         LOGGER.info("fetching all Schedule");
 
-        return new ResponseEntity<>(scheduleService.findAll(), HttpStatus.OK);
+        return scheduleService.findAll();
     }
 
     @ApiOperation(value = "save a schedule", response = Schedule.class,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping
-    public ResponseEntity<Schedule> saveQuestion(@Valid @RequestBody Schedule schedule) {
+    public Schedule saveQuestion(@Valid @RequestBody Schedule schedule) {
 
         LOGGER.info("saving schedule for {}", schedule.getEmail());
 
-        return new ResponseEntity<>(scheduleService.save(schedule), HttpStatus.OK);
+        return scheduleService.save(schedule);
     }
 
     @ApiOperation(value = "Apply vaacine for the schedule", response = Schedule.class,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @PutMapping("/apply/{scheduleId}")
-    public ResponseEntity<Schedule> updateQuestion(@PathVariable("scheduleId")
-                                                   @NotBlank
-                                                   @Size(min = 10, max = 64, message = "schedule id should be between 10 and 64 characters")
-                                                           String scheduleId) throws GeneralException {
+    public Schedule updateQuestion(@PathVariable("scheduleId")
+                                   @NotBlank
+                                   @Size(min = 10, max = 64, message = "schedule id should be between 10 and 64 characters")
+                                           String scheduleId) throws GeneralException {
 
         LOGGER.info("applying vaccine for schedule : {}", scheduleId);
 
-        return new ResponseEntity<>(scheduleService.applyVaccine(scheduleId), HttpStatus.OK);
+        return scheduleService.applyVaccine(scheduleId);
     }
 
     @ApiOperation(value = "Get all applied vaccine", response = Map.class, responseContainer = "List",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/applied/branch")
-    public ResponseEntity<Map<Map.Entry<String, String>, List<Schedule>>> getAllAppliedSchedule() {
+    public Map<Map.Entry<String, String>, List<Schedule>> getAllAppliedSchedule() {
 
         LOGGER.info("fetching all applied Schedule by branch");
 
-        return new ResponseEntity<>(scheduleService.getAppliedPerBranch(), HttpStatus.OK);
+        return scheduleService.getAppliedPerBranch();
     }
 
     @ApiOperation(value = "Get all applied vaccine by Branch", response = Schedule.class, responseContainer = "List",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/applied/branch/{branchId}")
-    public ResponseEntity<List<Schedule>> getAllAppliedbyBranch(@PathVariable("branchId") @NotBlank
-                                                                @Size(min = 10, max = 64, message = "branchId id should be between 10 and 64 characters")
-                                                                        String branchId) {
+    public List<Schedule> getAllAppliedbyBranch(@PathVariable("branchId") @NotBlank
+                                                @Size(min = 10, max = 64, message = "branchId id should be between 10 and 64 characters")
+                                                        String branchId) {
 
         LOGGER.info("fetching all applied Schedule by branch");
 
-        return new ResponseEntity<>(scheduleService.getAppliedByBranch(branchId), HttpStatus.OK);
+        return scheduleService.getAppliedByBranch(branchId);
     }
 
     @ApiOperation(value = "Get all applied vaccine by Branch", response = Schedule.class, responseContainer = "List",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/applied/day")
-    public ResponseEntity<List<Schedule>> getAllAppliedPerDay() {
+    public List<Schedule> getAllAppliedPerDay() {
 
         LOGGER.info("fetching all applied Schedule for a day");
 
-        return new ResponseEntity<>(scheduleService.getAppliedForDay(), HttpStatus.OK);
+        return scheduleService.getAppliedForDay();
     }
 
     @ApiOperation(value = "Get all applied vaccine by Branch", response = Schedule.class, responseContainer = "List",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/applied/period")
-    public ResponseEntity<List<Schedule>> getAllAppliedByPeriod(@RequestParam("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                                                                        LocalDateTime from,
-                                                                @RequestParam("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                                                                        LocalDateTime to) {
+    public List<Schedule> getAllAppliedByPeriod(@RequestParam("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+                                                        LocalDateTime from,
+                                                @RequestParam("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+                                                        LocalDateTime to) {
 
         LOGGER.info("fetching all applied Schedule by period");
 
-        return new ResponseEntity<>(scheduleService.getAppliedByPeriod(from, to), HttpStatus.OK);
+        return scheduleService.getAppliedByPeriod(from, to);
     }
 
 }

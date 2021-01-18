@@ -7,9 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,24 +33,24 @@ public class BranchController {
     @ApiOperation(value = "Get all branches", response = Branch.class, responseContainer = "List",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping
-    public ResponseEntity<List<Branch>> getAllBranch() {
+    public List<Branch> getAllBranch() {
 
         LOGGER.info("fetching all branches");
 
-        return new ResponseEntity<>(branchService.findAllBranches(), HttpStatus.OK);
+        return branchService.findAllBranches();
     }
 
     @ApiOperation(value = "Get branch by id", response = Branch.class,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/{branchId}")
-    public ResponseEntity<Branch> getBranchById(@PathVariable("branchId")
-                                                @NotBlank
-                                                @Size(min = 10, max = 64, message = "branchId id should be between 10 and 64 characters")
-                                                        String branchId) throws GeneralException {
+    public Branch getBranchById(@PathVariable("branchId")
+                                @NotBlank
+                                @Size(min = 10, max = 64, message = "branchId id should be between 10 and 64 characters")
+                                        String branchId) throws GeneralException {
 
         LOGGER.info("fetching branch with id {}", branchId);
 
-        return new ResponseEntity<>(branchService.findBranchesById(branchId), HttpStatus.OK);
+        return branchService.findBranchesById(branchId);
     }
 
 }

@@ -6,9 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,13 +31,13 @@ public class SlotController {
 
     @ApiOperation(value = "Get all available times for a branch", response = Slot.class, responseContainer = "List", produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/{branchId}")
-    public ResponseEntity<List<Slot>> getAllocationByBranchId(@PathVariable("branchId")
-                                                              @NotBlank
-                                                              @Size(min = 10, max = 64, message = "branchId id should be between 10 and 64 characters")
-                                                                      String branchId) {
+    public List<Slot> getAllocationByBranchId(@PathVariable("branchId")
+                                              @NotBlank
+                                              @Size(min = 10, max = 64, message = "branchId id should be between 10 and 64 characters")
+                                                      String branchId) {
 
         LOGGER.info("fetching all branches");
 
-        return new ResponseEntity<>(slotService.getAllSlotsByBranchId(branchId), HttpStatus.OK);
+        return slotService.getAllSlotsByBranchId(branchId);
     }
 }
